@@ -20,6 +20,7 @@ from ipi.utils.depend import *
 from ipi.engine.thermostats import Thermostat
 from ipi.engine.barostats import Barostat
 
+from ipi.engine import extraforces
 
 #__all__ = ['Dynamics', 'NVEIntegrator', 'NVTIntegrator', 'NPTIntegrator', 'NSTIntegrator', 'SCIntegrator`']
 
@@ -214,6 +215,7 @@ class DummyIntegrator(dobject):
         self.barostat = motion.barostat
         self.fixcom = motion.fixcom
         self.fixatoms = motion.fixatoms
+        self.cell = motion.cell
         dself = dd(self)
         dself.dt = dd(motion).dt
         if motion.enstype == "mts": self.nmts = motion.nmts
@@ -311,6 +313,8 @@ class NVEIntegrator(DummyIntegrator):
         self.beads.p += dstrip(self.forces.f) * (self.dt * 0.5)
         # also adds the bias force
         self.beads.p += dstrip(self.bias.f) * (self.dt * 0.5)
+        # also adds extra forces
+        self.beads.p += extraforces.calc(self) * (self.dt * 0.5)
 
     def qcstep(self):
         """Velocity Verlet centroid position propagator."""
