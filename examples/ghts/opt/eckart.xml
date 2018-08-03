@@ -1,0 +1,37 @@
+<simulation verbosity="low">
+   <step>0</step>
+   <total_steps>40000</total_steps>
+   <prng><seed>__SEED__</seed></prng>
+   <ffsocket mode='unix' pbc='False' name='driver'>
+      <address>localhost__PORT__</address> <port>__PORT__</port>  <latency>0.0001</latency> <timeout>100</timeout>
+   </ffsocket>
+   <output prefix='results'>
+      <trajectory stride="5" format="xyz" filename="xc" cell_units="angstrom"> x_centroid{angstrom} </trajectory>
+      <trajectory stride="5" format="xyz" filename="pos"> positions{angstrom} </trajectory>      
+      <checkpoint stride="1000" overwrite="false" filename="restart"/>
+   </output>
+   <system>
+      <initialize nbeads='__NBEADS__'> 
+         <file mode='xyz' units='angstrom'>../../eckart32.xyz</file>
+         <cell mode='abc' units='angstrom'>
+               [10., 10., 10.]
+         </cell>
+         <velocities mode="thermal" units='kelvin'> __TEMP__ </velocities>
+      </initialize>
+      <forces>
+         <force forcefield='driver'/>
+      </forces>
+      <ensemble>
+         <temperature units="kelvin"> __TEMP__ </temperature>
+      </ensemble>
+      <motion mode='dynamics'>
+      <dynamics mode='nvt'>
+         <thermostat mode='pile_l'>
+           <tau units="femtosecond"> 5 </tau>
+         </thermostat>      
+         <timestep units="femtosecond"> 0.25 </timestep>
+      </dynamics>
+      <fixcom>False</fixcom>
+      </motion>
+   </system>
+</simulation>

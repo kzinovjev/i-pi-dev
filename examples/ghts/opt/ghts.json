@@ -1,0 +1,36 @@
+{
+    "stage": {
+        "name": "optimize"
+    },
+    "ghts": {
+        "z": [-0.9E+00],
+        "n": [1.0E+00],
+        "M": [[9.9212E-01]]
+    },
+    "modes": {
+        "b": [0.0, 0.0, 0.0],
+        "a": [1.0, 0.0, 0.0]
+    },
+    "CV": [
+        {"kind": "x", "atoms": [1]}
+    ],
+    "params": {
+        "K": 400,
+        "K_d": 100,
+        "d_max": 1,
+        "gamma_z": 100,
+        "gamma_n": 100,
+        "gamma_d": 100,
+        "gamma_M": 100,
+        "gamma_b": 1,
+        "gamma_a": 0.1,
+        "gamma_delta": 10,
+        "fix_M": true,
+        "move_ghts": false,
+        "move_modes": true
+    },
+    "output": {
+        "print_every": 1,
+        "save_every": 100
+    }
+}

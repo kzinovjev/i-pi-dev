@@ -1,0 +1,96 @@
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:       0 positions{angstrom}  cell{atomic_unit}
+       H -1.10121e+00  2.87797e-02 -6.80461e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:       1 positions{angstrom}  cell{atomic_unit}
+       H -1.04806e+00  1.55906e-03 -1.00267e-01
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:       2 positions{angstrom}  cell{atomic_unit}
+       H -8.80434e-01  2.39277e-02 -3.68083e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:       3 positions{angstrom}  cell{atomic_unit}
+       H -8.99177e-01  1.95795e-02 -4.70528e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:       4 positions{angstrom}  cell{atomic_unit}
+       H -9.71913e-01 -9.81105e-02 -4.84074e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:       5 positions{angstrom}  cell{atomic_unit}
+       H -7.79323e-01 -9.53409e-02 -5.60182e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:       6 positions{angstrom}  cell{atomic_unit}
+       H -8.79163e-01 -8.48933e-02  3.84047e-03
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:       7 positions{angstrom}  cell{atomic_unit}
+       H -8.61567e-01 -7.70265e-02  2.05309e-03
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:       8 positions{angstrom}  cell{atomic_unit}
+       H -8.40101e-01 -7.72382e-02  4.36582e-03
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:       9 positions{angstrom}  cell{atomic_unit}
+       H -8.03862e-01 -1.00850e-01 -3.70630e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      10 positions{angstrom}  cell{atomic_unit}
+       H -8.92649e-01 -4.22535e-02  1.13647e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      11 positions{angstrom}  cell{atomic_unit}
+       H -9.58686e-01 -1.09823e-01  5.58052e-04
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      12 positions{angstrom}  cell{atomic_unit}
+       H -1.02179e+00 -4.61596e-02  5.49760e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      13 positions{angstrom}  cell{atomic_unit}
+       H -1.15191e+00 -6.07688e-03  4.40444e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      14 positions{angstrom}  cell{atomic_unit}
+       H -9.96911e-01  4.91575e-02 -1.10552e-01
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      15 positions{angstrom}  cell{atomic_unit}
+       H -1.00141e+00  2.51635e-02 -1.57308e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      16 positions{angstrom}  cell{atomic_unit}
+       H -8.64765e-01 -3.02244e-02 -1.08943e-01
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      17 positions{angstrom}  cell{atomic_unit}
+       H -8.69117e-01  2.60531e-02 -5.55070e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      18 positions{angstrom}  cell{atomic_unit}
+       H -1.01448e+00  4.36317e-02  4.97557e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      19 positions{angstrom}  cell{atomic_unit}
+       H -9.68431e-01 -3.54702e-02  3.73134e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      20 positions{angstrom}  cell{atomic_unit}
+       H -9.11809e-01 -7.31918e-02  7.58643e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      21 positions{angstrom}  cell{atomic_unit}
+       H -8.75442e-01 -1.15777e-03  1.33324e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      22 positions{angstrom}  cell{atomic_unit}
+       H -9.07286e-01 -6.01732e-02  1.30337e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      23 positions{angstrom}  cell{atomic_unit}
+       H -9.15760e-01 -9.65572e-02 -9.89105e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      24 positions{angstrom}  cell{atomic_unit}
+       H -8.37166e-01 -2.92169e-02 -1.17965e-01
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      25 positions{angstrom}  cell{atomic_unit}
+       H -7.70894e-01 -7.80193e-03 -2.46566e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      26 positions{angstrom}  cell{atomic_unit}
+       H -7.08890e-01  1.07490e-02 -2.22576e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      27 positions{angstrom}  cell{atomic_unit}
+       H -7.47732e-01  1.32170e-02  2.80585e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      28 positions{angstrom}  cell{atomic_unit}
+       H -7.73535e-01  5.96904e-02  1.98905e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      29 positions{angstrom}  cell{atomic_unit}
+       H -8.42013e-01  6.38073e-02  1.10566e-01
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      30 positions{angstrom}  cell{atomic_unit}
+       H -9.68568e-01  3.41143e-02  6.81726e-02
+1
+# CELL(abcABC):   18.89726    18.89726    18.89726    90.00000    90.00000    90.00000  Step:         335  Bead:      31 positions{angstrom}  cell{atomic_unit}
+       H -1.07620e+00  1.57127e-01  1.81558e-02
