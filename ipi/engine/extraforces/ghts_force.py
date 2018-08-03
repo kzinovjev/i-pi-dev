@@ -28,7 +28,7 @@ def ipi_force(integrator):
     if rank == 0:
         step += 1
         if step % state['output']['print_every'] == 0:
-            print_sigma(state['modes'], state['ghts'], step)
+            print_modes(state['modes'], state['ghts'], step)
         if step % state['output']['save_every'] == 0:
             save_state(state, step)
     return result
@@ -38,9 +38,9 @@ def save_state(state, step):
     io.dump_state(state, str(step) + ".json")
 
 
-def print_sigma(modes, ghts, step):
+def print_modes(modes, ghts, step):
     with open('ghts.out', 'a') as f:
-        nitems = len(ghts['z']) * 2 + len(modes['a']) * 2 + 1
+        nitems = len(ghts['z']) * 2 + len(modes['a']) * 2 + 2
         sigma0 = - np.dot(modes['a'], modes['b'])
         data = [step, sigma0] + \
                list(modes['b']) + list(modes['a']) + list(ghts['z']) + list(ghts['n'])
@@ -53,5 +53,5 @@ def print_sigma(modes, ghts, step):
 
 #Initial print
 if state is not None and rank == 0:
-    print_sigma(state['modes'], state['ghts'], step)
+    print_modes(state['modes'], state['ghts'], step)
     save_state(state, step)
