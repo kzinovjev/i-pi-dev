@@ -32,7 +32,7 @@ def get_grad_grad_dq_dz(ghts):
 
 
 def get_grad_grad_dq_dn(cv_set, ghts):
-    return np.matmul(ghts['Minv'], np.matmul(cv_set.m, ghts['Minvn']), ghts)
+    return np.matmul(ghts['Minv'], np.matmul(cv_set.m, ghts['Minvn']))
 
 
 def get_gradq_mod2(cv_set, ghts):
