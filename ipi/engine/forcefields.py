@@ -24,7 +24,7 @@ from ipi.utils.io import read_file
 from ipi.utils.units import unit_to_internal
 
 
-__all__ = ['ForceField', 'FFSocket', 'FFLennardJones', 'FFDebye', 'FFPlumed', 'FFYaff']
+__all__ = ['ForceField', 'FFSocket', 'FFLennardJones', 'FFPES2014', 'FFDebye', 'FFPlumed', 'FFYaff']
 
 
 class ForceRequest(dict):
@@ -378,6 +378,59 @@ class FFLennardJones(ForceField):
         v *= self.epsfour
 
         r["result"] = [v, f.reshape(nat * 3), np.zeros((3, 3), float), ""]
+        r["status"] = "Done"
+
+
+class FFPES2014(ForceField):
+
+    """PES-2014 potential for CH4+OH reaction
+    Theor Chem Acc (2015) 134:6
+    """
+
+    def __init__(self, latency=1.0e-3, name="", pars=None, dopbc=False):
+        """Initialises FFPES2014.
+
+        Args:
+           pars: Optional dictionary, giving the parameters needed by the driver.
+        """
+        from extraforcefields.PES import get_potential, initialize_potential
+
+        # check input - PBCs are not implemented here
+        if dopbc:
+            raise ValueError("Periodic boundary conditions are not supported by FFPES2014.")
+
+        initialize_potential()
+        self.potential = lambda q: get_potential(q)
+
+        # a socket to the communication library is created or linked
+        super(FFPES2014, self).__init__(latency, name, pars, dopbc=False)
+
+    def poll(self):
+        """Polls the forcefield checking if there are requests that should
+        be answered, and if necessary evaluates the associated forces and energy."""
+
+        # We have to be thread-safe, as in multi-system mode this might get
+        # called by many threads at once.
+        self._threadlock.acquire()
+        try:
+            for r in self.requests:
+                if r["status"] == "Queued":
+                    r["status"] = "Running"
+                    r["t_dispatched"] = time.time()
+                    self.evaluate(r)
+        finally:
+            self._threadlock.release()
+
+    def evaluate(self, r):
+
+        q = r["pos"].reshape((1, -1, 3)).T
+        nat = len(q[0])
+
+        if nat != 7:
+            raise ValueError("Number of atoms != 7 (not a CH4OH system)")
+
+        v, dv, info = self.potential(q)
+        r["result"] = [v, -dv.T.reshape(nat * 3), np.zeros((3, 3), float), ""]
         r["status"] = "Done"
 
 

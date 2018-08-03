@@ -8,14 +8,14 @@
 from copy import copy
 import numpy as np
 
-from ipi.engine.forcefields import ForceField, FFSocket, FFLennardJones, FFDebye, FFPlumed, FFYaff
+from ipi.engine.forcefields import ForceField, FFSocket, FFLennardJones, FFPES2014, FFDebye, FFPlumed, FFYaff
 from ipi.interfaces.sockets import InterfaceSocket
 import ipi.engine.initializer
 from ipi.inputs.initializer import *
 from ipi.utils.inputvalue import *
 
 
-__all__ = ["InputFFSocket", 'InputFFLennardJones', 'InputFFDebye', 'InputFFPlumed', 'InputFFYaff']
+__all__ = ["InputFFSocket", 'InputFFLennardJones', 'InputFFPES2014', 'InputFFDebye', 'InputFFPlumed', 'InputFFYaff']
 
 
 class InputForceField(Input):
@@ -205,6 +205,26 @@ class InputFFLennardJones(InputForceField):
             raise ValueError("Negative latency parameter specified.")
         if self.timeout.fetch() < 0.0:
             raise ValueError("Negative timeout parameter specified.")
+        
+
+class InputFFPES2014(InputForceField):
+
+    attribs = {}
+    attribs.update(InputForceField.attribs)
+
+    default_help = """PES-2014 potential for CH4+OH reaction
+    Theor Chem Acc (2015) 134:6"""
+    default_label = "FFPES2014"
+
+    def store(self, ff):
+        super(InputFFPES2014, self).store(ff)
+
+    def fetch(self):
+        super(InputFFPES2014, self).fetch()
+
+        return FFPES2014(pars=self.parameters.fetch(), name=self.name.fetch(),
+                              latency=self.latency.fetch(), dopbc=self.pbc.fetch())
+        
 
 class InputFFDebye(InputForceField):
 
