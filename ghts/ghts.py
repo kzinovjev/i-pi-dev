@@ -78,6 +78,10 @@ def force(beads, cell, masses, temp, dt, state):
     sigma_bias = harmonic_bias(rp.get_sigma(sigma, q), params['K']*nbeads, 0)
     d_bias = side_harmonic_bias(d, params['K_d']*nbeads, params['d_max'])
 
+    restraint_biases = np.zeros(beads.q.shape, beads.q.dtype)
+    for restraint in state['restraints']:
+            restraint_biases += np.array([restraint_bias(bead, restraint) for bead in beads.q])
+
     if stage['name'] == 'committor':
         if abs(sigma.value * SQAMU) > stage['q_threshold']:
             softexit.trigger('q_threshold reached')
@@ -86,7 +90,14 @@ def force(beads, cell, masses, temp, dt, state):
     recover_ghts(state, ghts)
     recover_modes(state, modes)
 
-    return sigma_bias + d_bias
+    return sigma_bias + d_bias + restraint_biases
+
+
+def restraint_bias(bead, bias_def):
+    return side_harmonic_bias(cv.get_cv(bead, bias_def),
+                              bias_def['K'] / KCAL_MOL,
+                              bias_def['reference'],
+                              bias_def.get('side', None))
 
 
 def write_centroid_data(cv_set, sigma, q, d, r, out_file):
