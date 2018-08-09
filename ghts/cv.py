@@ -56,7 +56,14 @@ CV_KIND_DICT = {
 
 
 def get_cv(q, cv_def):
-    return CV_KIND_DICT.get(cv_def['kind'])(q, cv_def['atoms'])
+    result = CV_KIND_DICT.get(cv_def['kind'])(q, cv_def['atoms'])
+    power = cv_def.get('power')
+    if power is None:
+        return result
+    return CV(
+        value=np.power(result.value, power),
+        gradient=power * np.power(result.value, power - 1) * result.gradient
+    )
 
 
 def get_cv_set(q, cv_def_list, masses):
