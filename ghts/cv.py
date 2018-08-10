@@ -29,6 +29,12 @@ def eval_cv(q, atoms, callback):
 def eval_dist(q, atoms): return eval_cv(q, atoms, mm.bond_length)
 
 
+def eval_transfer(q, atoms):
+    dist1 = eval_dist(q, atoms[:2])
+    dist2 = eval_dist(q, atoms[1:])
+    return CV(dist1.value-dist2.value, dist1.gradient-dist2.gradient)
+
+
 def eval_angle(q, atoms): return eval_cv(q, atoms, mm.bend_angle)
 
 
@@ -48,6 +54,7 @@ def eval_x(q, atoms):
 
 CV_KIND_DICT = {
     'distance': eval_dist,
+    'transfer': eval_transfer,
     'angle': eval_angle,
     'dihedral': eval_dihedral,
     'pplane': eval_pplane,
