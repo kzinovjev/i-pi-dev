@@ -34,10 +34,7 @@ def force(beads, cell, masses, temp, dt, state):
 
     cv_set = [cv.get_cv_set(q, state['CV'], masses) for q in beads.q]
     if state['ghts'].get('M') is None:
-        state['ghts']['M'] = (
-            np.average([bead_cv_set.m for bead_cv_set in cv_set], 0) / AMU +
-            np.diag(np.random.rand(len(state['CV'])) / 100)
-        )
+        state['ghts']['M'] = np.average([bead_cv_set.m for bead_cv_set in cv_set], 0) / AMU
         state['ghts']['n'] = np.matmul(state['ghts']['M'], state['ghts']['n'])
 
     params = convert_params(state['params'])
