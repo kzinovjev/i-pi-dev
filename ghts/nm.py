@@ -54,9 +54,9 @@ def _get_d2r(r, eta):
     U = mk_nm_matrix(nbeads)
     for i in range(1, nr):
         d2r[i] = (
-                     out(U[k(i)]) + out(U[_k(i, nbeads)]) -
-                     out(U[k(i)] * eta[k(i)] - U[_k(i, nbeads)] * eta[_k(i, nbeads)])
-                 ) / r[i]
+                     out(U[k(i)]) + out(U[_k(i, nbeads)]) / r[i] -
+                     out(U[k(i)] * eta[k(i)] + U[_k(i, nbeads)] * eta[_k(i, nbeads)]) / r[i]**3
+                 )
     return d2r
 
 
