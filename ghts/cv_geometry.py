@@ -65,7 +65,8 @@ def orthogonal(a, b, m):
 
 def parallel(a, b, m):
     """Component of vector a parallel to vector b"""
-    return b * dot_product(a, normal(b, m), m)
+    normal_b = normal(b, m)
+    return normal_b * dot_product(a, normal_b, m)
 
 
 def normal(a, m):
