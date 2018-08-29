@@ -1,0 +1,15 @@
+Production
+ &cntrl
+  ntf=1,
+  ntc=1,
+  cut=8.0,
+  ntb=1,
+  ifqnt=1
+ /
+ &qmmm
+  qmmask='@2493-2515,2525-2535,2541-2573',
+  qmcharge=1,
+  qm_theory='PM3',
+  qmshake=0,
+  qm_ewald=1, qm_pme=1
+ /
