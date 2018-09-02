@@ -72,9 +72,9 @@ def force(beads, cell, masses, temp, dt, state):
             if idx == stage['walker']*stage['structures']:
                 softexit.trigger('exit ' + str(stage['walker']))
 
-    if stage['name'] == 'prepare' and stage['step'] < stage['prepare_steps']:
-        params['K'] *= stage['step'] / stage['prepare_steps']
-        params['K_d'] *= stage['step'] / stage['prepare_steps']
+    if stage['name'] == 'prepare' and stage['step'] <= stage['prepare_steps']:
+        params['K'] *= float(stage['step']) / stage['prepare_steps']
+        params['K_d'] *= float(stage['step']) / stage['prepare_steps']
         if stage['step'] == stage['prepare_steps']:
             stage['name'] = 'optimize'
             stage['step'] = 0
