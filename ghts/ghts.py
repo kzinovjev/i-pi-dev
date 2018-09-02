@@ -72,7 +72,7 @@ def force(beads, cell, masses, temp, dt, state):
     if stage['name'] == 'prepare' and stage['step'] < stage['prepare_steps']:
         params['K'] *= stage['step'] / stage['prepare_steps']
         params['K_d'] *= stage['step'] / stage['prepare_steps']
-        if stage['step'] == state['prepare_steps']:
+        if stage['step'] == stage['prepare_steps']:
             stage['name'] = 'optimize'
             stage['step'] = 0
 
