@@ -50,8 +50,9 @@ def force(beads, cell, masses, temp, dt, state):
     stage = state['stage']
     stage['step'] = stage.get('step', 0) + 1
 
-    write_centroid_data(cv_set, sigma, q, d, r, out_file)
-    write_bead_data(cv_set, ghts, bead_out_files)
+    if stage['step'] % state['output'].get('print_CV_every', 1) == 0:
+        write_centroid_data(cv_set, sigma, q, d, r, out_file)
+        write_bead_data(cv_set, ghts, bead_out_files)
 
     if stage['name'] == 'optimize':
         optimizer.move(modes, ghts, cv_set, r, sigma, params, params['K'] / temp, dt)
