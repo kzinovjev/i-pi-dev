@@ -50,9 +50,15 @@ def force(beads, cell, masses, temp, dt, state):
     stage = state['stage']
     stage['step'] = stage.get('step', 0)
 
-    if stage['step'] % state['output'].get('print_CV_every', 1) == 0:
-        write_centroid_data(cv_set, sigma, q, d, r, out_file)
-        write_bead_data(cv_set, ghts, bead_out_files)
+    step = stage['step']
+    print_CV_every = state['output'].get('print_CV_every', 1)
+
+    if step % print_CV_every == 0:
+        restraints = [[cv.get_cv(bead, restr).value
+                       for restr in state['restraints']]
+                      for bead in beads.q]
+        write_centroid_data(cv_set, sigma, q, d, r, restraints, out_file)
+        write_bead_data(cv_set, ghts, restraints, bead_out_files)
 
     stage['step'] += 1
 
@@ -104,24 +110,25 @@ def restraint_bias(bead, bias_def):
                               bias_def.get('side', None))
 
 
-def write_centroid_data(cv_set, sigma, q, d, r, out_file):
+def write_centroid_data(cv_set, sigma, q, d, r, restraints, out_file):
     mean_cv_value = rp.mean_beads(getattr, cv_set, 'value')
-    nitems = len(mean_cv_value) + len(r.value) + 3
     sigma_value = sigma.value * SQAMU
     q_value = np.mean(q.value) * SQAMU
     d_value = d.value * SQAMU
     r_value = r.value * SQAMU
-    data = [sigma_value, q_value, d_value] + list(r_value) + list(mean_cv_value)
+    restraints = np.average(restraints, 0)
+    nitems = len(mean_cv_value) + len(r.value) + len(restraints) + 3
+    data = [sigma_value, q_value, d_value] + list(r_value) + list(mean_cv_value) + list(restraints)
     out_file.write(('{:>12.4e}' * nitems + '\n').format(*data))
     out_file.flush()
 
 
-def write_bead_data(cv_set, ghts, bead_out_files):
-    for bead_file, bead in zip(bead_out_files, cv_set):
+def write_bead_data(cv_set, ghts, restraints, bead_out_files):
+    for bead_file, bead, bead_restraints in zip(bead_out_files, cv_set, restraints):
         q = qd.get_q(bead, ghts)
         d = qd.get_d(bead, ghts)
-        nitems = len(bead.value) + 2
-        data = [q.value * SQAMU, d.value * SQAMU] + list(bead.value)
+        nitems = len(bead.value) + len(bead_restraints) + 2
+        data = [q.value * SQAMU, d.value * SQAMU] + list(bead.value) + list(bead_restraints)
         bead_file.write(('{:>12.4e}' * nitems + '\n').format(*data))
         bead_file.flush()
 
