@@ -3,7 +3,7 @@ import numpy as np
 
 
 def m_tensor(jacobian, masses):
-    return np.matmul(np.matmul(jacobian, np.diag(1./np.array(masses))), jacobian.transpose())
+    return np.matmul(jacobian * np.reciprocal(masses), jacobian.transpose())
 
 class CVVector(object):
     """A wrapper class to facilitate working with geometry routines. For all binary operations
