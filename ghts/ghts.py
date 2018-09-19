@@ -116,7 +116,7 @@ def write_centroid_data(cv_set, sigma, q, d, r, restraints, out_file):
     q_value = np.mean(q.value) * SQAMU
     d_value = d.value * SQAMU
     r_value = r.value * SQAMU
-    restraints = np.average(restraints, 0)
+    restraints = np.average(restraints, 0) if len(restraints[0]) > 0 else []
     nitems = len(mean_cv_value) + len(r.value) + len(restraints) + 3
     data = [sigma_value, q_value, d_value] + list(r_value) + list(mean_cv_value) + list(restraints)
     out_file.write(('{:>12.4e}' * nitems + '\n').format(*data))
