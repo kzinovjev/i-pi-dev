@@ -89,7 +89,7 @@ def force(beads, cell, masses, temp, dt, state):
     d_bias = side_harmonic_bias(d, params['K_d']*nbeads, params['d_max'])
 
     restraint_biases = np.zeros(beads.q.shape, beads.q.dtype)
-    for restraint in state['restraints']:
+    for restraint in state.get('restraints', []):
             restraint_biases += np.array([restraint_bias(bead, restraint) for bead in beads.q])
 
     if stage['name'] == 'committor':
