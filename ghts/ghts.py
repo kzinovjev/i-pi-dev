@@ -66,6 +66,12 @@ def force(beads, cell, masses, temp, dt, state):
         optimizer.move(modes, ghts, cv_set, r, sigma, params, params['K'] / temp, dt)
 
     if stage['name'] == 'sample':
+
+        if (stage.get('optimizer_data') and
+                stage['step'] % stage.get('optimizer_data_step', 1) == 0):
+            with open(stage['optimizer_data'], 'a+') as f:
+                write_optimizer_data(cv_set, f)
+
         stage['last_save_step'] = stage.get('last_save_step', stage['step'])
         stage['last_saved'] = stage.get('last_saved', (stage['walker']-1) * stage['structures'])
         if abs(sigma.value * SQAMU) < stage['q_threshold'] and \
@@ -89,7 +95,7 @@ def force(beads, cell, masses, temp, dt, state):
     d_bias = side_harmonic_bias(d, params['K_d']*nbeads, params['d_max'])
 
     restraint_biases = np.zeros(beads.q.shape, beads.q.dtype)
-    for restraint in state['restraints']:
+    for restraint in state.get('restraints', []):
             restraint_biases += np.array([restraint_bias(bead, restraint) for bead in beads.q])
 
     if stage['name'] == 'committor':
@@ -131,6 +137,15 @@ def write_bead_data(cv_set, ghts, restraints, bead_out_files):
         data = [q.value * SQAMU, d.value * SQAMU] + list(bead.value) + list(bead_restraints)
         bead_file.write(('{:>12.4e}' * nitems + '\n').format(*data))
         bead_file.flush()
+
+
+def write_optimizer_data(cv_set, file):
+    CVs = [cv for bead_cv_set in cv_set for cv in bead_cv_set.value]
+    triu_indices = np.triu_indices(len(cv_set[0].value))
+    Ms = [item for bead_cv_set in cv_set for item in bead_cv_set.m[triu_indices]]
+    nitems = len(CVs) + len(Ms)
+    data = CVs + Ms
+    file.write(('{:>12.4e}' * nitems + '\n').format(*data))
 
 
 def convert_modes(modes):
